@@ -1,0 +1,4 @@
+name: OxideOsha
+version: @version@
+main: com.oxide.oxideosha.Main
+api-version: 1.13
