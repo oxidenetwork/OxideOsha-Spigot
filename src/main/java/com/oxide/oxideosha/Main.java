@@ -13,7 +13,7 @@ public final class Main extends JavaPlugin {
             @Override
             public void run() {
                 for (LivingEntity entity : getServer().getWorld("world").getLivingEntities()) {
-                    if (entity.getLocation().subtract(0.4D, 0.4D, 0.4D).getBlock().getType().equals(Material.STONECUTTER)) {
+                    if (entity.getLocation().subtract(0.0D, 0.4D, 0.0D).getBlock().getType().equals(Material.STONECUTTER)) {
                         entity.damage(1.0D);
                     }
                 }
