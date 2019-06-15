@@ -35,7 +35,7 @@ public final class Main extends JavaPlugin {
                             }
                         } else if (damageagainst.equalsIgnoreCase("player")) {
                             if (entity instanceof Player) {
-                                if (((Player) entity).getPlayer().getGameMode() == GameMode.SURVIVAL) {
+                                if (((Player) entity).getPlayer().getGameMode() == GameMode.SURVIVAL || ((Player) entity).getPlayer().getGameMode() == GameMode.ADVENTURE) {
                                     entity.damage(damage);
                                     entity.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("damage-message").replaceAll("%player%", ((Player) entity).getPlayer().getName())));
                                 }
@@ -43,14 +43,14 @@ public final class Main extends JavaPlugin {
                         } else if (damageagainst.equalsIgnoreCase("both")) {
                             entity.damage(damage);
                             if (entity instanceof Player) {
-                                if (((Player) entity).getPlayer().getGameMode() == GameMode.SURVIVAL) {
+                                if (((Player) entity).getPlayer().getGameMode() == GameMode.SURVIVAL || ((Player) entity).getPlayer().getGameMode() == GameMode.ADVENTURE) {
                                     entity.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("damage-message").replaceAll("%player%", ((Player) entity).getPlayer().getName())));
                                 }
                             }
                         }
                         if (launchoption) {
                             if (entity instanceof Player) {
-                                if (((Player) entity).getPlayer().getGameMode() == GameMode.SURVIVAL) {
+                                if (((Player) entity).getPlayer().getGameMode() == GameMode.SURVIVAL || ((Player) entity).getPlayer().getGameMode() == GameMode.ADVENTURE) {
                                     entity.setVelocity(entity.getVelocity().setY(launch).multiply(0.2));
                                 }
                             } else {
