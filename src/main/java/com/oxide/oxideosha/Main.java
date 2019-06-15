@@ -9,16 +9,22 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public final class Main extends JavaPlugin {
 
+    private static Main plugin;
+
     @Override
     public void onEnable() {
+        getConfig().options().copyDefaults(true);
+        saveDefaultConfig();
+        plugin = this;
+
         new BukkitRunnable() {
             @Override
             public void run() {
                 for (LivingEntity entity : getServer().getWorld("world").getLivingEntities()) {
                     if (entity.getLocation().subtract(0.0D, 0.4D, 0.0D).getBlock().getType().equals(Material.STONECUTTER)) {
-                        entity.damage(1.0D);
+                        entity.damage(plugin.getConfig().getDouble("damage-value"));
                         if (entity instanceof Player) {
-                            entity.sendMessage(ChatColor.RED + ("Ouch! ") + ChatColor.AQUA + ("You should be more careful " + ChatColor.GOLD + entity.getName()));
+                            entity.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("damage-message").replaceAll("%player%", ((Player) entity).getPlayer().getName())));
                         }
                     }
                 }
