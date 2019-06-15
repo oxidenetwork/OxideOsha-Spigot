@@ -21,6 +21,8 @@ public final class Main extends JavaPlugin {
 
         String damageagainst = plugin.getConfig().getString("mob-or-player-damage");
         double damage = plugin.getConfig().getDouble("damage-value");
+        boolean launchoption = plugin.getConfig().getBoolean("launch-entity");
+        double launch = plugin.getConfig().getDouble("launch-value");
 
         new BukkitRunnable() {
             @Override
@@ -46,8 +48,15 @@ public final class Main extends JavaPlugin {
                                 }
                             }
                         }
-
-
+                        if (launchoption) {
+                            if (entity instanceof Player) {
+                                if (((Player) entity).getPlayer().getGameMode() == GameMode.SURVIVAL) {
+                                    entity.setVelocity(entity.getVelocity().setY(launch).multiply(0.2));
+                                }
+                            } else {
+                                entity.setVelocity(entity.getVelocity().setY(launch).multiply(0.2));
+                            }
+                        }
                     }
                 }
             }

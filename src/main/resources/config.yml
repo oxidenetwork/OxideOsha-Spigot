@@ -1,3 +1,5 @@
 damage-message: '&cOuch! &bYou should be more careful &6%player%'
 damage-value: 1
 mob-or-player-damage: both
+launch-entity: false
+launch-value: 1
