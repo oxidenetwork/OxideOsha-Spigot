@@ -1,6 +1,7 @@
 package com.oxide.oxideosha;
 
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
@@ -32,13 +33,17 @@ public final class Main extends JavaPlugin {
                             }
                         } else if (damageagainst.equalsIgnoreCase("player")) {
                             if (entity instanceof Player) {
-                                entity.damage(damage);
-                                entity.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("damage-message").replaceAll("%player%", ((Player) entity).getPlayer().getName())));
+                                if (((Player) entity).getPlayer().getGameMode() == GameMode.SURVIVAL) {
+                                    entity.damage(damage);
+                                    entity.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("damage-message").replaceAll("%player%", ((Player) entity).getPlayer().getName())));
+                                }
                             }
                         } else if (damageagainst.equalsIgnoreCase("both")) {
                             entity.damage(damage);
                             if (entity instanceof Player) {
-                                entity.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("damage-message").replaceAll("%player%", ((Player) entity).getPlayer().getName())));
+                                if (((Player) entity).getPlayer().getGameMode() == GameMode.SURVIVAL) {
+                                    entity.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("damage-message").replaceAll("%player%", ((Player) entity).getPlayer().getName())));
+                                }
                             }
                         }
 
